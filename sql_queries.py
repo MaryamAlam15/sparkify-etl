@@ -1,3 +1,7 @@
+"""
+helper file to contain all the queries.
+"""
+
 # DROP TABLES
 
 songplay_table_drop = "DROP TABLE IF EXISTS songplays;"
@@ -93,7 +97,6 @@ insert into artists (artist_id, name, location, latitude, longitude)
 values (%s, %s, %s, %s, %s)
 """)
 
-
 time_table_insert = ("""
 insert into time (start_time, hour, day, week, month, year, weekday)
 values (%s, %s, %s, %s, %s, %s, %s);
@@ -113,5 +116,6 @@ and s.duration=%s;
 
 # QUERY LISTS
 
-create_table_queries = [songplay_table_create, user_table_create, song_table_create, artist_table_create, time_table_create]
+create_table_queries = [songplay_table_create, user_table_create, song_table_create, artist_table_create,
+                        time_table_create]
 drop_table_queries = [songplay_table_drop, user_table_drop, song_table_drop, artist_table_drop, time_table_drop]

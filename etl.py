@@ -9,6 +9,14 @@ from sql_queries import *
 
 
 def process_song_file(cur, filepath):
+    """
+    get songs and artists data from JSON file and insert them into respective table.
+    reads file and put its data in panda data frame.
+    fetches song and artist's attributes from data frame and put them in insert query.
+    :param cur: cursor instance.
+    :param filepath: the path to the JSON file.
+    :return: None.
+    """
     # open song file
     df = pd.read_json(filepath, lines=True)
 
@@ -24,6 +32,15 @@ def process_song_file(cur, filepath):
 
 
 def process_log_file(cur, filepath):
+    """
+    reads log file, filter the records by `NextSong` action.
+    converts milliseconds into timestamp.
+    fetches dimension specific attributes and insert them into respective table.
+    also fills fact table `songplays`.
+    :param cur: cursor instance.
+    :param filepath: the path to the JSON file.
+    :return: None.
+    """
     # open log file
     df = pd.read_json(filepath, lines=True)
 
@@ -65,12 +82,20 @@ def process_log_file(cur, filepath):
 
         # insert songplay record
         songplay_data = (
-        row.start_time, row.userId, row.level, songid, artistid, row.sessionId, row.location, row.userAgent)
+            row.start_time, row.userId, row.level, songid, artistid, row.sessionId, row.location, row.userAgent)
         print(songplay_data)
         cur.execute(songplay_table_insert, songplay_data)
 
 
 def process_data(cur, conn, filepath, func):
+    """
+    iterates through data folder, append all files and process them one by one.
+    :param cur: cursor instance.
+    :param conn: connection instance.
+    :param filepath: song/log data directory path.
+    :param func: function to be called against each file.
+    :return: None.
+    """
     # get all files matching extension from directory
     all_files = []
     for root, dirs, files in os.walk(filepath):
