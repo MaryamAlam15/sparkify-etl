@@ -4,7 +4,7 @@
  Currently, they don't have an easy way to query their data, which resides in a directory of JSON logs on user activity 
  on the app, as well as a directory with JSON metadata on the songs in their app.
 
-#### So, to revolve this issue:
+#### So, to resolve this issue:
 In this project, 
    - data modeling is implemented with Postgres.
    - an ETL pipeline is built using Python which will transform data from JSON files to dimension and fact tables using "star" schema.
