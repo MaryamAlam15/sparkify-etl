@@ -10,13 +10,13 @@ In this project,
    - an ETL pipeline is built using Python which will transform data from JSON files to dimension and fact tables using "star" schema.
 
 ### Dimension Tables:
-   - users
-   - songs
-   - artists
-   - time
+   - users: contains users in the music app.
+   - songs: contains songs in the database.
+   - artists: contains artists in the database.
+   - time: timestamp of records in `songplays` broken down into specific units.
    
 ### Fact Table:
-   - songplays
+   - songplays: records in the log data associated with song plays.
    
 ### ETL Pipeline:
    - transfers data from two local directories (data/song_data, data/log_data) into the tables using SQL and Python.
